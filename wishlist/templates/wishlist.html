@@ -1,26 +1,45 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h5>Nama: </h5>
-<p>{{nama}}</p>
 
-<table>
-    <tr>
-    <th>Nama Barang</th>
-    <th>Harga Barang</th>
-    <th>Deskripsi</th>
-    </tr>
-    {% comment %} Tambahkan data di bawah baris ini {% endcomment %}
-    {% for barang in list_barang %}
-        <tr>
-            <th>{{barang.nama_barang}}</th>
-            <th>{{barang.harga_barang}}</th>
-            <th>{{barang.deskripsi}}</th>
-        </tr>
-    {% endfor %}
-</table>
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <span class="navbar-brand mb-0 h1">Nama: {{nama}}</span>
+        
+      </div>
+      <button type="button" class="btn btn-danger "><a href="{% url 'wishlist:logout' %}" style="text-decoration: none; color: aliceblue;">Logout</a></button>
+    </div>
+</nav>
 
-<h5>Sesi terakhir login: {{ last_login }}</h5>
-<button><a href="{% url 'wishlist:logout' %}">Logout</a></button>
+<div class="container" style="margin-top: 30px;">
+  <div  class="table-responsive-md">
+    <table class="table table-bordered table-hover">
+        <thead class="table-dark">
+          <tr>
+            <th>Nama Barang</th>
+            <th>Harga Barang</th>
+            <th>Deskripsi</th>
+          </tr>
+        </thead>
+        {% comment %} Tambahkan data di bawah baris ini {% endcomment %}
+        {% for barang in list_barang %}
+        <tbody class="table table-hover">
+          <tr>
+              <td>{{barang.nama_barang}}</td>
+              <td>{{barang.harga_barang}}</td>
+              <td>{{barang.deskripsi}}</td>
+          </tr>
+        </tbody>
+        {% endfor %}
+    </table>
+  </div>
+  <h6 >Sesi terakhir login: {{ last_login }}</h6>
+</div>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
 {% endblock content %}
